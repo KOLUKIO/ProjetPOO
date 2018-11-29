@@ -5,16 +5,15 @@ import shapes.Shape2D;
 
 public class Planet {
 	private Image image;
-	private int posX; 
-	private int posY;
+	private double posX; 
+	private double posY;
 	private double size;
 	private double maxX;
 	private double maxY;
 	private double tauxDeProd;
-	
 	Shape2D hitBox;
 	
-	Planet(String path, int posX, int posY, double size, Shape2D hitBox, double maxX, double maxY, double tauxDeProd) {
+	Planet(String path, double posX, double posY, double size, Shape2D hitBox, double maxX, double maxY, double tauxDeProd) {
 		
 		this.image = new Image(path, size, size, false, false);
 		this.posX = posX;
@@ -31,18 +30,7 @@ public class Planet {
 		this.posY = y;
 		//validate position 
 	}
-	public int getPosX() {
-		return posX;
-	}
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-	public int getPosY() {
-		return posY;
-	}
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
+	
 	public double getSize() {
 		return size;
 	}
@@ -68,7 +56,39 @@ public class Planet {
 		this.tauxDeProd = tauxDeProd;
 	}
 	public void render(GraphicsContext gc) {
-		gc.drawImage(image, posX, posY);
+		gc.drawImage(image, posX-(size/2), posY-(size/2));
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public double getPosX() {
+		return posX;
+	}
+
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+
+	public double getPosY() {
+		return posY;
+	}
+
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+
+	public Shape2D getHitBox() {
+		return hitBox;
+	}
+
+	public void setHitBox(Shape2D hitBox) {
+		this.hitBox = hitBox;
 	}
 	
 }

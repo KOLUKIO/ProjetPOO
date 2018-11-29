@@ -1,3 +1,5 @@
+// last modif 29/11
+
 package game;
 
 import java.util.ArrayList;
@@ -62,29 +64,71 @@ public class Game extends Application {
 		
 		Image space = new Image(getRessourcePathByName("images/space2.jpg"), WIDTH, HEIGHT, false, false);
 		
-		//rajout d'une planete
+		//rajout d'une planete premier test
 		
 		Point2D p1 = new Point2D(WIDTH/2,HEIGHT/2);
-		Shape2D hitboxplanet1 = new Circle(p1, 62);
-		Planet planet1 = new Planet(getRessourcePathByName("images/Jupiter.png"), WIDTH/2, HEIGHT/2, 400, hitboxplanet1,WIDTH, HEIGHT, 0);
+		Shape2D hitboxplanet1 = new Circle(p1, 200);
+		Planet planet1 = new Planet(getRessourcePathByName("images/BlueRed1.png"), WIDTH/2, HEIGHT/2, hitboxplanet1.getradius()*2, hitboxplanet1,WIDTH-hitboxplanet1.getradius()*2, HEIGHT-hitboxplanet1.getradius()*2, 0);
+		
+		//un vaisseau au pif
+		
+		
+		Point2D pv = new Point2D(30,30);
+		Shape2D hitboxvaisseau1 = new Circle(pv, 50);
+		Ships vaisseau1 = new Ships(getRessourcePathByName("images/BlueRed1Ship.png"), 30, 30, hitboxvaisseau1.getradius(), WIDTH, HEIGHT, 5, 5, hitboxvaisseau1);
+		
 		
 		
 		
 		stage.setScene(scene);
 		stage.show();
 		
+		EventHandler<MouseEvent> mouseHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				/*System.out.println("test :"+control_pressed);
+				if(control_pressed == true) {
+					Sprite pinapple = new Sprite(pinappleorig);
+					pinapple.setPosition(e.getX() - pinapple.width() / 2, e.getY() - pinapple.height() / 2);
+					changeSpeed(pinapple);
+					pinapples.add(pinapple);
+				}else {
+				spaceship.setSpeed(0, 0);
+				spaceship.setPosition(e.getX() - spaceship.width() / 2, e.getY() - spaceship.height() / 2);
+				}*/
+				Point2D p_e = new Point2D(e.getX(),e.getY());
+				if(hitboxvaisseau1.isInside(p_e)) {
+					System.out.println("dedans ! click : "+p_e.toString()+" planet :"+hitboxvaisseau1.toString());
+				}else {
+					System.out.println("dehors... click : "+p_e.toString()+" planet :"+hitboxvaisseau1.toString());
+				}
+			}
+		};
+		scene.setOnMousePressed(mouseHandler);
+		
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				vaisseau1.changeSpeed(e.getCode());
+			}
+		});
+		
 		new AnimationTimer() {
 
 			
 			public void handle(long arg0) {
+				Point2D changePoint = new Point2D(vaisseau1.getPosX(),vaisseau1.getPosY());
+				hitboxvaisseau1.setcenter(changePoint);
 				gc.drawImage(space, 0, 0);
+				vaisseau1.updatePosition();
 				planet1.render(gc);
-				
+				vaisseau1.render(gc);
 			}
 			
 		}.start();
 		
 	}
+	
+	
+	
 	
 
 }

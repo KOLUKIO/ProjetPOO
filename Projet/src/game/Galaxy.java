@@ -33,6 +33,4 @@ public class Galaxy {
 		this.nbShips = nbShips;
 	}
 	
-	
-	
 }

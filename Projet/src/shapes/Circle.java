@@ -21,7 +21,7 @@ public class Circle extends Shape2D{
 		return Math.PI * radius*radius;
 	}
 
-	boolean isInside(Point2D p) {
+	public boolean isInside(Point2D p) {
 		double distance = p.distance(center);
 		return distance <= radius;
 	}
@@ -30,7 +30,7 @@ public class Circle extends Shape2D{
 		return this.center;
 	}
 	
-	double getradius() {
+	public double getradius() {
 		return this.radius;
 	}
 	
@@ -38,7 +38,7 @@ public class Circle extends Shape2D{
 		this.radius = newradius;
 	}
 	
-	void setcenter(Point2D newcenter) {
+	public void setcenter(Point2D newcenter) {
 		center.setX(newcenter.getX());
 		center.setY(newcenter.getY());
 	}
@@ -47,6 +47,8 @@ public class Circle extends Shape2D{
 		System.out.println("Circle : center = ("+center.getX()+";"+center.getY()+"), radius = "+radius);
 	}
 	
+	
+	
 	public double perimeter() {
 		return 2*Math.PI*radius;
 	}
@@ -54,5 +56,9 @@ public class Circle extends Shape2D{
 	public void translation(int dx, int dy) {
 		center.setX(center.getX()+dx);
 		center.setY(center.getY()+dy);
+	}
+
+	public String toString() {
+		return "Circle [center=" + center + ", radius=" + radius + "]";
 	}
 }

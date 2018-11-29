@@ -21,5 +21,14 @@ public abstract class Shape2D {
         System.out.println("Shape2D");
     }
     
-    
+    public boolean isInside(Point2D p) {
+		return true;
+	}
+
+	public double getradius() {
+		return 0;
+	}
+	
+	public void setcenter(Point2D newcenter) {
+	}
 }
